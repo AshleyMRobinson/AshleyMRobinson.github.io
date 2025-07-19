@@ -1,0 +1,16 @@
+SELECT
+    Region,
+    COUNT(DISTINCT Property_ID) AS Properties_Tracked,
+    ROUND(AVG(CAST(Occupancy_Rate AS REAL)), 2) AS Avg_Occupancy_Rate,
+    COUNT(DISTINCT CASE WHEN Underutilized = 'True' THEN Property_ID END) AS Underutilized_Count,
+    ROUND(SUM(DISTINCT Revenue_At_Risk), 2) AS Total_Revenue_at_Risk,
+    ROUND(AVG(CAST(Renewal_Probability AS REAL)), 2) AS Avg_Renewal_Probability
+FROM 
+    lease_utilization
+GROUP BY 
+    Region;
+
+
+
+
+
